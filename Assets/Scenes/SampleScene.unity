@@ -427,7 +427,7 @@ MonoBehaviour:
   animator: {fileID: 1491013468}
   lightSource: {fileID: 1032976316}
   movementSpeed: 3
-  lightReduction: 0.05
+  lightReduction: 0.1
   timeBetweenLightReduction: 1
 --- !u!1001 &300281993
 PrefabInstance:
@@ -751,6 +751,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1647110286452273015, guid: 2798558617230c94c90f2133ec73986d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647110286452273015, guid: 2798558617230c94c90f2133ec73986d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647110286452273015, guid: 2798558617230c94c90f2133ec73986d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1647110287884828762, guid: 2798558617230c94c90f2133ec73986d, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -799,15 +811,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightFlower
       objectReference: {fileID: 0}
+    - target: {fileID: 1647110287884828767, guid: 2798558617230c94c90f2133ec73986d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274767009835628212, guid: 2798558617230c94c90f2133ec73986d, type: 3}
+      propertyPath: currentSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3274767009835628212, guid: 2798558617230c94c90f2133ec73986d, type: 3}
+      propertyPath: offsetBlink
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3274767009835628212, guid: 2798558617230c94c90f2133ec73986d, type: 3}
       propertyPath: lightRegeneration
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3274767009835628212, guid: 2798558617230c94c90f2133ec73986d, type: 3}
       propertyPath: regenerationPeriod
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1647110286452273010, guid: 2798558617230c94c90f2133ec73986d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2798558617230c94c90f2133ec73986d, type: 3}
 --- !u!1 &519420028
 GameObject:
@@ -3935,6 +3960,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 276043872, guid: 31c1d1c212ffc1140b7fb37873950aa4, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4231533180530705139, guid: 31c1d1c212ffc1140b7fb37873950aa4, type: 3}
       propertyPath: maxSize
       value: 5
@@ -3962,6 +3991,10 @@ PrefabInstance:
     - target: {fileID: 4231533180530705141, guid: 31c1d1c212ffc1140b7fb37873950aa4, type: 3}
       propertyPath: m_IsCustomRangeActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522973272944271189, guid: 31c1d1c212ffc1140b7fb37873950aa4, type: 3}
+      propertyPath: offsetBlink
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8305942417817344946, guid: 31c1d1c212ffc1140b7fb37873950aa4, type: 3}
       propertyPath: m_RootOrder

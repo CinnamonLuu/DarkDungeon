@@ -12,22 +12,17 @@ public class LightSource : MonoBehaviour
 
     [Header("Blink configuration")]
     [SerializeField] protected float offsetBlink;
-    [SerializeField] protected private float blinkTime;
+    [SerializeField] protected float blinkSpeed = 1;
 
     protected bool scalingBig;
-    protected float timeLeft;
-    protected Vector3 startScale;
     protected Vector3 bigScale;
     protected Vector3 smallScale;
 
-    private void Start()
+    protected virtual void Start()
     {
-        timeLeft = blinkTime;
         scalingBig = true;
-        rectTransform.localScale = new Vector3(currentSize, currentSize, 1);
         smallScale = new Vector3(currentSize - offsetBlink, currentSize - offsetBlink, 1);
         rectTransform.localScale = smallScale;
-        startScale = rectTransform.localScale;
         bigScale = new Vector3(currentSize + offsetBlink, currentSize + offsetBlink, 1);
     }
 
@@ -40,43 +35,27 @@ public class LightSource : MonoBehaviour
     {
         if (scalingBig)
         {
-            if (timeLeft > 0f)
+            if (rectTransform.localScale.x <= bigScale.x || rectTransform.localScale.y <= bigScale.y)
             {
-                rectTransform.localScale = Vector3.Lerp(startScale, bigScale, 1f - timeLeft / blinkTime);
+                rectTransform.localScale = new Vector3(rectTransform.localScale.x + (Time.deltaTime * blinkSpeed), rectTransform.localScale.y + (Time.deltaTime * blinkSpeed), 1);
             }
             else
             {
                 scalingBig = false;
-                startScale = rectTransform.localScale;
-                timeLeft = blinkTime;
             }
 
         }
         else
         {
-            if (timeLeft > 0f)
+            if (rectTransform.localScale.x >= smallScale.x || rectTransform.localScale.y >= smallScale.y)
             {
-                rectTransform.localScale = Vector3.Lerp(startScale, smallScale, 1f - timeLeft / blinkTime);
+                rectTransform.localScale = new Vector3(rectTransform.localScale.x - (Time.deltaTime * blinkSpeed), rectTransform.localScale.y - (Time.deltaTime * blinkSpeed), 1);
             }
             else
             {
                 scalingBig = true;
-                startScale = rectTransform.localScale;
-                timeLeft = blinkTime;
             }
-
         }
-        timeLeft -= Time.deltaTime;
-    }
-
-    private void ChangeMaxSize(float value)
-    {
-        maxSize = value;
-    }
-
-    private void ChangeMinSize(float value)
-    {
-        minSize = value;
     }
 
     public void ChangeCurrentSize(float valueToAdd)
@@ -91,7 +70,6 @@ public class LightSource : MonoBehaviour
         {
             currentSize = maxSize;
         }
-
         bigScale = new Vector3(currentSize + offsetBlink, currentSize + offsetBlink, 1);
         smallScale = new Vector3(currentSize - offsetBlink, currentSize - offsetBlink, 1);
     }
