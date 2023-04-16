@@ -13,8 +13,9 @@ public class LightBank : LightSource
 
     Dictionary<IRechargeable, float> regenerableEntitiesActive;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         regenerableEntitiesActive = new Dictionary<IRechargeable, float>();
         rechargeables = new List<IRechargeable>();
     }
@@ -24,11 +25,10 @@ public class LightBank : LightSource
     {
         base.Update();
         rechargeables.Clear();
-        List<Collider> hits = Physics.OverlapSphere(transform.position, currentSize).ToList().FindAll(x => x.GetComponent<IRechargeable>() is not null);
-
-        foreach (Collider hit in hits)
+        List<Collider2D> hits = Physics2D.OverlapCircleAll(transform.position, currentSize / 2f).ToList().FindAll(x => x.GetComponentInChildren<IRechargeable>() is not null);
+        foreach (Collider2D hit in hits)
         {
-            IRechargeable recargeable = hit.GetComponent<IRechargeable>();
+            IRechargeable recargeable = hit.GetComponentInChildren<IRechargeable>();
             rechargeables.Add(recargeable);
             if (!regenerableEntitiesActive.ContainsKey(recargeable))
             {
@@ -36,7 +36,7 @@ public class LightBank : LightSource
             }
         }
 
-        Dictionary<IRechargeable, float> copyEntities= new Dictionary<IRechargeable, float>(regenerableEntitiesActive);
+        Dictionary<IRechargeable, float> copyEntities = new Dictionary<IRechargeable, float>(regenerableEntitiesActive);
 
         foreach (KeyValuePair<IRechargeable, float> kvp in copyEntities)
         {
@@ -54,5 +54,6 @@ public class LightBank : LightSource
                 regenerableEntitiesActive.Remove(kvp.Key);
             }
         }
+
     }
 }
