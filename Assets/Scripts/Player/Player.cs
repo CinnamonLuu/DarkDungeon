@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private PlayerInput playerInput;
@@ -33,11 +33,6 @@ public class PlayerMovement : MonoBehaviour
 
 
         isWalkingHash = Animator.StringToHash("isWalking");
-    }
-
-    void Start()
-    {
-
     }
 
     void Update()
